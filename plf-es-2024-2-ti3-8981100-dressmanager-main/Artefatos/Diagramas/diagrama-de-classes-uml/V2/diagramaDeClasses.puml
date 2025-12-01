@@ -1,0 +1,141 @@
+@startuml
+
+class Aluguel {
+    - id: Long
+    - dataInicio: LocalDate
+    - dataFim: LocalDate
+    - cliente: Cliente
+    - item: Item
+    - emAtraso: boolean
+    + vender(): void
+    + ajustar(String observacao, double valorAjuste): void
+    + exibirRelatorio(): String
+    + enviarRelatorio(String email)
+    + checarAtraso: boolean
+    + notificarAtrasos(): void
+
+}
+
+class Pagamento {
+    - id: Long
+    - horario: DateTime
+    - aluguel: Aluguel
+    - valor: Double
+    - venda: Venda
+}
+
+class Venda {
+    - id: Long
+    - aluguel: Aluguel
+    - valor: Double
+}
+
+class Cliente {
+    - id: Long
+    - nome: String
+    - cpf: String
+    - rg: String
+    - endereco: Endereco
+    - telefone: String
+    - email: String
+    - dataNascimento: LocalDate
+    + validarCpf(): boolean
+}
+
+enum Cor {
+    VERMELHO
+    AZUL
+    VERDE
+    AMARELO
+    PRETO
+    BRANCO
+    CINZA
+    LARANJA
+    ROXO
+    ROSA
+}
+
+enum Categoria {
+    BOM
+    MEDIO
+    RUIM
+}
+
+class Endereco {
+    - id: Long
+    - rua: String
+    - numero: String
+    - complemento: String
+    - bairro: String
+    - cidade: String
+    - estado: String
+    - cep: String
+    + buscarCep(): Endereco
+}
+
+class Fornecedor {
+    - id: Long
+    - nome: String
+    - endereco: Endereco
+    - telefone: String
+}
+
+class Item {
+    - id: Long
+    - descricao: String
+    - modelo: String
+    - quantidade: int
+    - valorVenda: double
+    - valorAluguel: double
+    - fornecedor: Fornecedor
+    - observacao: String
+    - cor: Cor
+    + alugar(Cliente cliente, LocalDate dataInicio, LocalDate dataFim): void
+}
+
+class Usuario {
+    - id: Long
+    - nome: String
+    - senha: String
+    - email: String
+    - telefone: String
+    - roles: Set<Role>
+    
+}
+
+class Role {
+    - id: Long
+    - nome: String
+    - Values: Enum
+}
+
+
+enum Values {
+    ADMIN
+    BASIC
+}
+
+class Ajuste {
+    - aluguel: Aluguel
+    - observacao: String
+    - valorAjuste: double
+    - finalizado: boolean
+    + concluirAjuste(): void
+}
+
+Role "1" --o "1..N" Values               
+Usuario "1..N" o-- "1..N" Role        
+Aluguel "1..N" *-- "1" Cliente        
+Aluguel "1" o-- "1" Item        
+Cliente "1" *-- "1" Endereco      
+Fornecedor "1" *-- "1" Endereco   
+Item "1" --o "0..1" Fornecedor      
+Item "1" --o "0..1" Cor               
+Ajuste "1" *-- "1" Aluguel
+Pagamento "1..N" *-- "1..N" Aluguel
+Venda "1" *-- "1" Aluguel
+Cliente "1" --o "1" Categoria               
+
+
+
+@enduml

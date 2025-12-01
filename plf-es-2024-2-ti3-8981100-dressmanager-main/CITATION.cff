@@ -1,0 +1,33 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+title: DressManager
+authors:
+  - family-names: Campos de Barcelos
+    given-names: João Pedro 
+  - family-names: Sena Augusto de Brito
+    given-names: Raphael 
+  - family-names: Portela da Silva
+    given-names: Isaac 
+  - family-names: Mariz Magalhães Cota
+    given-names: Yan 
+  - family-names: Pedrosa do Carmo Nonato
+    given-names: Miguel
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Alonso Veloso
+    given-names: Eveline
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Caram Santos de Oliveira
+    given-names: João 
+    affiliation: PUC Minas
+    family-names: de Macêdo Neto
+    given-names: Cristiano 
+keywords:
+- Gestão de alugueis  
+- Aluguel 
+- Aplicação web java
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-2-ti3-8981100-dressmanager
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2024-12-11

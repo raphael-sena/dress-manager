@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdb
+    networks:
+      - app-network
+
+  postgresdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: db_dressManager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    networks:
+      - app-network
+    ports:
+      - "5432:5432"
+
+networks:
+  app-network:
+    driver: bridge
